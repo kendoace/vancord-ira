@@ -1,0 +1,110 @@
+[
+	{
+		"id": "q1",
+		"category": "Detect",
+		"item": "Are vulnerability scans performed? By whom and how frequently?",
+		"explanation": "Identifies exploitable weaknesses (e.g., unpatched servers) before attackers can exploit them, reducing risks of breaches or ransomware infections.",
+		"remediation": "Schedule quarterly external/internal scans via Nessus/OpenVAS and monthly credentialed scans on critical systems. Prioritize findings based on CVE scores and asset criticality.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q2",
+		"category": "Detect",
+		"item": "Are IT and security system logs collected and stored centrally on a Security Information and Event Management (SIEM) system?",
+		"explanation": "Provides comprehensive visibility into threats across the environment, enabling faster incident detection and response.",
+		"remediation": "Centralize logging with SIEM solutions; ensure 90+ days of retention. Create correlation rules for attack patterns (e.g., brute force, SQLi). Enable real-time dashboards for SOC teams.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q3",
+		"category": "Detect",
+		"item": "Does the organization routinely log and monitor the activity of high-access, privileged users (such as system administrators) to ensure that all activity is appropriate?",
+		"explanation": "Detects misuse/abuse of elevated privileges, which are prime targets for attackers (e.g., credential harvesting), ensuring accountability and compliance with least privilege principles.",
+		"remediation": "Enable granular auditing on admin accounts via tools like Splunk Enterprise Security. Require dual approval for critical actions and review logs daily using SIEMs with UEBA capabilities.",
+		"weight": 1,
+		"quick": true
+	},
+	{
+		"id": "q4",
+		"category": "Detect",
+		"item": "Does the organization have a process for routinely reviewing and monitoring logs to detect unauthorized and anomalous activities?",
+		"explanation": "Enables proactive detection of breaches or insider threats by correlating event patterns in real time.",
+		"remediation": "Centralize logging via SIEM (e.g., Splunk or IBM QRadar). Create alerts for high-risk events (failed logins, data exfiltration) and investigate within 24 hours.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q5",
+		"category": "Protect",
+		"item": "Are backup systems isolated from production networks and/or identity infrastructure?",
+		"explanation": "Ensures backups are intact and restorable, avoiding reliance on corrupted or incomplete copies during recovery efforts.",
+		"remediation": "Segregate backup servers into DMZs with no inbound connections except from authorized sources. Use dedicated VLANs and restrict administrative access via MFA.",
+		"weight": 2,
+		"quick": true
+	},
+	{
+		"id": "q6",
+		"category": "Protect",
+		"item": "Are all services exposed to the internet (email, FTP, web server, remote access) secured in a DMZ?",
+		"explanation": "Protects internal systems from attacks targeting exposed services while maintaining functionality (e.g., customer portals).",
+		"remediation": "Place public-facing servers in DMZ segments with strict egress rules to production networks. Apply WAF protection for web apps and enforce rate limiting on RDP/SFTP ports.",
+		"weight": 1,
+		"quick": true
+	},
+	{
+		"id": "q7",
+		"category": "Protect",
+		"item": "Does the organization have a process to prevent or detect data leakage including the use of a Data Loss Prevention (DLP) tool to detect or prevent the unintended disclosure of sensitive or confidential data?",
+		"explanation": "Prevents accidental/unauthorized leaks (e.g., via email) that could lead to compliance violations (GDPR fines), legal action, or reputational harm.",
+		"remediation": "Deploy DLP solutions monitoring endpoints, emails, and network traffic for regulated data (e.g., PII/PCI). Establish policies blocking unapproved transfers and alerting security teams.",
+		"weight": 1,
+		"quick": true
+	},
+	{
+		"id": "q8",
+		"category": "Protect",
+		"item": "Do users have local administrator rights to their workstations?",
+		"explanation": "Limits attack surfaces by preventing malware from escalating privileges. Reduces risks of ransomware infections that exploit elevated user permissions.",
+		"remediation": "Restrict admin privileges except where justified (e.g., IT staff). Use least privilege principles and Just-In-Time access via Microsoft LAPS or BeyondTrust Privilege Manager.",
+		"weight": 1,
+		"quick": true
+	},
+	{
+		"id": "q9",
+		"category": "Protect",
+		"item": "Is Multifactor Authentication (MFA) used for authentication?",
+		"explanation": "Protects against credential stuffing/phishing attacks by adding an additional verification layer, reducing breaches caused by stolen passwords.",
+		"remediation": "Enforce MFA across all cloud/on-prem systems using FIDO2-certified hardware tokens (e.g., YubiKey) or app-based OTPs. Audit exceptions quarterly and phase out legacy single-factor accounts.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q10",
+		"category": "Protect",
+		"item": "Is remote access permitted? How is remote access managed?",
+		"explanation": "Reduces the risk of unauthorized access by ensuring remote connections are authenticated, encrypted, monitored, and limited to authorized users and devices.",
+		"remediation": "Require remote access through secure VPN or Zero Trust Network Access (ZTNA) solutions protected by MFA. Restrict access based on user roles, device compliance, and network policies. Log and monitor remote sessions, disable inactive accounts, and periodically review remote access permissions.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q11",
+		"category": "Protect",
+		"item": "Does the organization require the use of unique user IDs and enforce strong passwords?",
+		"explanation": "Ensures accountability by tracing actions to individual users. Prevents credential reuse attacks and reduces risks of compromised accounts due to weak passwords.",
+		"remediation": "Ban shared credentials; mandate complex passwords (14+ chars, no dictionary words). Use PAM solutions like CyberArk for privileged passwords and enforce 90-day expirations with history checks.",
+		"weight": 1,
+		"quick": true
+	},
+	{
+		"id": "q12",
+		"category": "Respond",
+		"item": "Does the organization implement annual Incident Response tabletop training where all individuals are assigned roles and responsibilities?",
+		"explanation": "Prepares teams to act decisively during real incidents by identifying gaps and improving coordination under pressure.",
+		"remediation": "Conduct IR tabletops annually with scenarios like ransomware or data breaches. Assign roles (Incident Commander, Legal Advisor) and document responses in a playbook for improvement.",
+		"weight": 3,
+		"quick": true
+	}
+]
