@@ -18,19 +18,11 @@ function ira_send_submission_email($submission) {
 		? 'Quick Read'
 		: 'Full Assessment';
 
-	$to = array_filter([
-		// get_option( 'admin_email' ),
-		'aleksandar@webmaxformance.com',
-		'JPufahl@vancord.com',
-		'delliott@vancord.com',
-		'spare@vancord.com',
-	]);
-
-	$assessment_type = $submission['assessment_type'] ?? 'full';
-
-	$assessment_label = $assessment_type === 'short'
-		? 'Quick Read'
-		: 'Full Assessment';
+	$admin_email = get_option( 'admin_email' );
+	$to = is_email( $admin_email ) ? $admin_email : '';
+	if ( ! $to ) {
+		return;
+	}
 
 	$subject = 'New IRA Submission - ' . $assessment_label;
 
