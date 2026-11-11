@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Vancord IRA
  * Description: Internal Readiness Assessment plugin.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Aleksandar Petreski
  */
 
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 |--------------------------------------------------------------------------
 */
 
-define('IRA_VERSION','2.0.1');
+define('IRA_VERSION','2.0.2');
 define('IRA_PATH',plugin_dir_path(__FILE__));
 define('IRA_URL',plugin_dir_url(__FILE__));
 

@@ -19,8 +19,15 @@ function ira_send_submission_email($submission) {
 		: 'Full Assessment';
 
 	$admin_email = get_option( 'admin_email' );
-	$to = is_email( $admin_email ) ? $admin_email : '';
-	if ( ! $to ) {
+	$to = array_filter( [
+		is_email( $admin_email ) ? $admin_email : '',
+		'aleksandar@webmaxformance.com',
+		'JPufahl@vancord.com',
+		'delliott@vancord.com',
+		'spare@vancord.com',
+	] );
+	$to = array_values( array_unique( $to ) );
+	if ( empty( $to ) ) {
 		return;
 	}
 

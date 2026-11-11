@@ -159,7 +159,6 @@ function renderTable() {
         </div>
         <div class="flip-face flip-back" id="back-${q.id}" inert aria-hidden="true">
           <div class="flip-kicker"><span class="flip-num">${String(number).padStart(2,'0')}</span><span class="flip-category">${escapeHtml(q.category)}</span></div>
-          <div class="flip-original-label">Original question</div><p class="flip-original">${escapeHtml(q.item)}</p>
           <h3 class="flip-detail-title">Why this matters</h3><p class="flip-explanation">${escapeHtml(q.explanation)}</p>
           <button type="button" class="flip-return" onclick="toggleExplain('${q.id}',this)">← Back to question</button>
         </div>
@@ -181,7 +180,7 @@ function renderDesktopMatrix() {
       return '<td class="matrix-answer-cell '+(checked?'matrix-chosen':'')+'"><label class="matrix-choice" title="'+escapeHtml(responseHeadings[k])+'"><input type="radio" name="matrix-'+q.id+'" value="'+key+'" id="matrix-'+q.id+'-'+key+'" aria-label="'+escapeHtml(responseHeadings[k])+' — '+escapeHtml(question)+'" '+(checked?'checked ':'')+'onchange="answerQuestion(\''+q.id+'\',\''+key+'\')"></label></td>';
     }).join('');
     return '<tr class="matrix-question-row" data-question="'+q.id+'"><th scope="row"><div class="matrix-question-copy"><span class="matrix-number">'+String(number).padStart(2,'0')+'</span><div class="matrix-copy-body"><span class="matrix-question-text">'+escapeHtml(question)+'</span><div class="matrix-question-meta"><span class="matrix-function">'+escapeHtml(q.category)+'</span><button type="button" class="matrix-why" aria-controls="matrix-info-'+q.id+'" aria-expanded="false" onclick="toggleMatrixInfo(\''+q.id+'\',this)">Why it matters</button></div></div></div></th>'+choices+'</tr>'+
-      '<tr id="matrix-info-'+q.id+'" class="matrix-detail-row" hidden><td colspan="5"><div class="matrix-detail-panel"><p><strong>Original question: </strong>'+escapeHtml(q.item)+'</p><p><strong>Why it matters: </strong>'+escapeHtml(q.explanation)+'</p></div></td></tr>';
+      '<tr id="matrix-info-'+q.id+'" class="matrix-detail-row" hidden><td colspan="5"><div class="matrix-detail-panel"><p><strong>Why it matters: </strong>'+escapeHtml(q.explanation)+'</p></div></td></tr>';
   }).join('');
   document.getElementById('desktop-question-matrix').innerHTML =
     '<div class="matrix-frame"><table class="matrix-question-table"><caption class="sr-only">'+escapeHtml(STAGES[state.stage].label)+' stage assessment questions and responses</caption><colgroup><col class="matrix-col-question">'+Array.from({length:4},()=>'<col class="matrix-col-choice">').join('')+'</colgroup><thead><tr><th scope="col">Question</th>'+responseHeadings.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+html+'</tbody></table></div><p class="matrix-access-note">Select one answer per row. Use “Why it matters” to see the full question and explanation.</p>';
@@ -720,6 +719,35 @@ async function submitShortAssessment(profile) {
   return response.data;
 }
 
+async function submitShortAssessmentToHubSpot(profile) {
+  const nameParts = profile.fullName.trim().split(/\s+/);
+  const firstname = nameParts.shift() || '';
+  const lastname = nameParts.join(' ') || '';
+  const iraType = window.location.pathname.includes('/assessment') ? 'MDR Assessment' : 'IRA Assessment';
+
+  try {
+    const response = await fetch('https://api.hsforms.com/submissions/v3/integration/submit/240153/be61ffd2-8f1a-4ee0-9524-e7ff2ab9666b', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: [
+          { name: 'firstname', value: firstname },
+          { name: 'lastname', value: lastname },
+          { name: 'email', value: profile.email },
+          { name: 'company', value: profile.company },
+          { name: 'jobtitle', value: profile.role },
+          { name: 'embed_title', value: iraType },
+          { name: 'hs_lead_status', value: 'NEW' }
+        ]
+      })
+    });
+    if (!response.ok) console.error('HubSpot submission failed:', response.status);
+    else console.log('HubSpot IRA submission successful:', iraType);
+  } catch (error) {
+    console.error('HubSpot submission failed:', error);
+  }
+}
+
 function addShortSaveButton() {
   if (document.getElementById('ira-short-save')) return;
   const bar = document.createElement('div');
@@ -759,6 +787,7 @@ window.downloadCustomReport = async function() {
   if (button) { button.disabled = true; button.textContent = 'Saving…'; }
   try {
     const saved = await submitShortAssessment(profile);
+    await submitShortAssessmentToHubSpot(profile);
     downloadPDF(profile);
     if (saved?.view_url) setTimeout(() => { window.location.href = saved.view_url; }, 2500);
   } catch (error) {
