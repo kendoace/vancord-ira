@@ -2,7 +2,8 @@
 /**
  * Plugin Name: Vancord IRA
  * Description: Internal Readiness Assessment plugin.
- * Version: 2.0.2
+ * Version: 2.0.3
+ * Update URI: https://github.com/kendoace/vancord-ira
  * Author: Aleksandar Petreski
  */
 
@@ -16,7 +17,7 @@ if (!defined('ABSPATH')) {
 |--------------------------------------------------------------------------
 */
 
-define('IRA_VERSION','2.0.2');
+define('IRA_VERSION','2.0.3');
 define('IRA_PATH',plugin_dir_path(__FILE__));
 define('IRA_URL',plugin_dir_url(__FILE__));
 
@@ -39,7 +40,8 @@ foreach([
 	'submissions.php',
 	'revisions.php',
 	'tokens.php',
-	'mailer.php'
+	'mailer.php',
+	'github-updater.php'
 
 ] as $file){
 

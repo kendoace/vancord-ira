@@ -1,0 +1,53 @@
+name: Build versioned WordPress release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to package (for example v2.0.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Build WordPress plugin ZIP
+        id: package
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          VERSION="${RELEASE_TAG#v}"
+          mkdir -p build/vancord-ira
+          git archive "$RELEASE_TAG" | tar -x -C build/vancord-ira
+          rm -rf build/vancord-ira/.github
+          (cd build && zip -qr "$GITHUB_WORKSPACE/vancord-ira-$VERSION.zip" vancord-ira)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "package=vancord-ira-$VERSION.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Publish release package
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+          PACKAGE: ${{ steps.package.outputs.package }}
+          VERSION: ${{ steps.package.outputs.version }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$PACKAGE" --clobber
+          else
+            gh release create "$RELEASE_TAG" "$PACKAGE" \
+              --title "Vancord IRA $VERSION" \
+              --generate-notes
+          fi
