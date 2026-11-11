@@ -235,12 +235,32 @@
 <div class="trust-foot">
   <div class="tf-inner">
     <div class="tf-top">
-      <div class="tf-col"><div class="tf-brand">VANCORD</div><p>Trusted IT and cybersecurity partner for New England organizations since 2005.</p></div>
-      <div class="tf-col"><h4>Offices</h4><p>500 Boston Post Rd<br>Milford, CT 06460</p><p style="margin-top:10px;">180 Glastonbury Blvd, Suite 107<br>Glastonbury, CT 06033</p></div>
-      <div class="tf-col"><h4>Contact</h4><p><a href="mailto:sales@vancord.com">sales@vancord.com</a></p><p><a href="tel:2038749607">203.874.9607</a></p><p><a href="tel:8555124817">1-855-VANCORD</a></p></div>
-      <div class="tf-col"><h4>24/7 Security Operations</h4><p>In an active incident?</p><p><a href="tel:8555124817" style="font-weight:800;color:#ffd47a;">1-855-VANCORD</a></p><p style="font-size:11px;color:rgba(255,255,255,.55);">855-512-4817</p></div>
+      <div class="tf-col">
+        <img src="https://www.vancord.com/wp-content/uploads/2022/03/vancord-logo.svg" alt="Vancord" class="site-logo">
+        <p>Trusted IT and cybersecurity partner for New England organizations since 2005.</p>
+      </div>
+      <div class="tf-col">
+        <h4>Offices</h4>
+        <p><a href="https://maps.app.goo.gl/CMw9tukePWao8K917" target="_blank" rel="noopener">500 Boston Post Rd<br>Milford, CT 06460</a></p>
+        <p style="margin-top:10px;"><a href="https://maps.app.goo.gl/amCbWiYCNRkeaQyt6" target="_blank" rel="noopener">180 Glastonbury Blvd, Suite 107<br>Glastonbury, CT 06033</a></p>
+      </div>
+      <div class="tf-col">
+        <h4>Contact</h4>
+        <p><a href="mailto:sales@vancord.com">sales@vancord.com</a></p>
+        <p><a href="tel:2038749607">203.874.9607</a></p>
+        <p><a href="tel:8555124817">1-855-VANCORD</a></p>
+      </div>
+      <div class="tf-col">
+        <h4>24/7 Security Operations</h4>
+        <p>In an active incident?</p>
+        <p><a href="tel:8555124817" style="font-weight:800;color:var(--accent,#ffd47a);">1-855-VANCORD</a></p>
+        <p><a href="tel:8555124817">855-512-4817</a></p>
+      </div>
     </div>
-    <div class="tf-bottom"><div class="tf-meta">© 2026 Vancord · All rights reserved</div><div class="tf-meta">Built on the NIST Cybersecurity Framework</div></div>
+    <div class="tf-bottom">
+      <div class="tf-meta">Copyright © <?php echo esc_html( wp_date( 'Y' ) ); ?> Vancord all rights reserved |&nbsp;<a href="/terms-conditions/" target="_blank" rel="noopener">Terms</a>&nbsp;|&nbsp;<a href="/privacy-policy/" target="_blank" rel="noopener">Privacy</a></div>
+      <div class="tf-meta">Built on the NIST Cybersecurity Framework</div>
+    </div>
   </div>
 </div>
 

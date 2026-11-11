@@ -479,12 +479,58 @@ function renderPresentationGuidance(overall, tier, weakest, gaps) {
 }
 function scrollToCustomize() { selectCustomizeTab('role'); document.getElementById('customize-card').scrollIntoView({ behavior:'smooth', block:'start' }); }
 const CUSTOMIZE_SECTIONS = ['role','org','team','finish'];
+const BLOCKED_EMAIL_DOMAINS = [
+  'gmail.com','googlemail.com',
+  'yahoo.com','ymail.com','rocketmail.com',
+  'hotmail.com','outlook.com','live.com','msn.com',
+  'aol.com','aim.com',
+  'icloud.com','me.com','mac.com',
+  'protonmail.com','pm.me',
+  'tutanota.com','tutamail.com',
+  'startmail.com','hushmail.com',
+  'fastmail.com','runbox.com',
+  'countermail.com',
+  'mailfence.com','kolabnow.com',
+  'posteo.de','disroot.org',
+  'gmx.com','gmx.de','gmx.net','gmx.at','gmx.ch',
+  'yandex.com','yandex.ru',
+  'mail.ru',
+  'zoho.com',
+  'laposte.net',
+  'orange.fr',
+  'free.fr',
+  'libero.it','virgilio.it',
+  'tin.it','tiscali.it',
+  'rediffmail.com',
+  'indiatimes.com',
+  'sify.com',
+  'bol.com.br',
+  '163.com','126.com',
+  'qq.com','yeah.net',
+  'tempmail.com',
+  'guerrillamail.com','guerrillamail.info',
+  '10minutemail.com',
+  'mailinator.com',
+  'trashmail.com',
+  'fakeinbox.com',
+  'throwawaymail.com',
+  'getnada.com',
+  'yopmail.com',
+  'sharklasers.com',
+  'maildrop.cc',
+  'moakt.com'
+];
+function isCompanyEmail(email) {
+  const domain = email.toLowerCase().split('@').pop();
+  if (domain.endsWith('.gov') || domain.endsWith('.edu')) return true;
+  return !BLOCKED_EMAIL_DOMAINS.includes(domain);
+}
 function getCustomizeFieldErrors(section) {
   const p = getProfile();
   if (section === 'role') {
     return {
       'f-fullname': p.fullName ? '' : 'Enter your name.',
-      'f-email': !p.email ? 'Enter your work email.' : (!emailValid(p.email) ? 'Enter a valid email address.' : ''),
+      'f-email': !p.email ? 'Enter your work email.' : (!emailValid(p.email) ? 'Enter a valid email address.' : (!isCompanyEmail(p.email) ? 'Please use a company or professional email address.' : '')),
       'f-role': p.role ? '' : 'Choose your role.'
     };
   }
