@@ -1,0 +1,542 @@
+[
+	{
+		"id": "q1",
+		"category": "Detect",
+		"item": "Does the organization secure physical access to facilities using technical controls such as door access systems?",
+		"explanation": "Prevents physical breaches by intruders posing as employees/vendors, reducing risks to critical infrastructure (e.g., server rooms).",
+		"remediation": "Use keycard/biometric entry systems integrated with HR databases. Install mantraps in data centers and restrict tailgating via turnstiles. Audit logs weekly for unauthorized entries.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q2",
+		"category": "Detect",
+		"item": "Does the organization maintain and review a list of personnel who have physical access to facilities at least annually?",
+		"explanation": "Ensures only authorized individuals can physically access sensitive areas, reducing risks from terminated employees or compromised credentials.",
+		"remediation": "Maintain an Access Control List (ACL) linked to employee records. Revoke access immediately upon termination/contract end. Conduct annual audits with mock breach tests.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q3",
+		"category": "Detect",
+		"item": "Are vulnerability scans performed? By whom and how frequently?",
+		"explanation": "Identifies exploitable weaknesses (e.g., unpatched servers) before attackers can exploit them, reducing risks of breaches or ransomware infections.",
+		"remediation": "Schedule quarterly external/internal scans via Nessus/OpenVAS and monthly credentialed scans on critical systems. Prioritize findings based on CVE scores and asset criticality.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q4",
+		"category": "Detect",
+		"item": "Are IT and security system logs collected and stored centrally on a Security Information and Event Management (SIEM) system?",
+		"explanation": "Provides comprehensive visibility into threats across the environment, enabling faster incident detection and response.",
+		"remediation": "Centralize logging with SIEM solutions; ensure 90+ days of retention. Create correlation rules for attack patterns (e.g., brute force, SQLi). Enable real-time dashboards for SOC teams.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q5",
+		"category": "Detect",
+		"item": "Does the organization have a Third-Party Risk Management (TPRM) process?",
+		"explanation": "Mitigates risks from third-party vulnerabilities (e.g., supply chain attacks or vendor data breaches), ensuring partners meet contractual compliance requirements.",
+		"remediation": "Formalize TPRM with due diligence questionnaires, SLAs for security controls, and continuous monitoring tools like BitSight. Conduct annual onsite audits for critical vendors.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q6",
+		"category": "Detect",
+		"item": "Does the organization formally document and list all third parties that have access to organizational data?",
+		"explanation": "Ensures accountability for shared data usage, simplifies audits/investigations, and identifies potential risks from non-compliant partners.",
+		"remediation": "Maintain a Third-Party Inventory with details on data handled, contractual obligations, and compliance status (e.g., SOC 2 Type II). Update quarterly during vendor reviews.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q7",
+		"category": "Detect",
+		"item": "Do staff with information security roles monitor trends and news in security attacks, ransomware, and other security-related subjects?",
+		"explanation": "Improves situational awareness so security staff can recognize emerging attack patterns, prioritize relevant patches, and adjust monitoring or response plans.",
+		"remediation": "Subscribe to threat intelligence feeds (e.g., MITRE ATT&CK, CrowdStrike Falcon Intel) and industry groups like MS-ISAC, REN-ISAC, CISA, ISACA or ISSA. Hold biweekly briefings on emerging threats.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q8",
+		"category": "Detect",
+		"item": "Does the organization routinely log and monitor the activity of high-access, privileged users (such as system administrators) to ensure that all activity is appropriate?",
+		"explanation": "Detects misuse/abuse of elevated privileges, which are prime targets for attackers (e.g., credential harvesting), ensuring accountability and compliance with least privilege principles.",
+		"remediation": "Enable granular auditing on admin accounts via tools like Splunk Enterprise Security. Require dual approval for critical actions and review logs daily using SIEMs with UEBA capabilities.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q9",
+		"category": "Detect",
+		"item": "Does the organization have a process for routinely reviewing and monitoring logs to detect unauthorized and anomalous activities?",
+		"explanation": "Enables proactive detection of breaches or insider threats by correlating event patterns in real time.",
+		"remediation": "Centralize logging via SIEM (e.g., Splunk or IBM QRadar). Create alerts for high-risk events (failed logins, data exfiltration) and investigate within 24 hours.",
+		"weight": 3,
+		"quick": false
+	},
+	{
+		"id": "q10",
+		"category": "Govern",
+		"item": "Does the organization implement a formal Security Incident Response Plan (IRP) that is updated and tested regularly?",
+		"explanation": "Ensures organized response to breaches, minimizing downtime/data loss while complying with regulatory notification requirements.",
+		"remediation": "Develop an IRP with defined roles (e.g., CSIRT, PR), communication protocols, and containment steps. Update it semi-annually post-exercise and ensure alignment with NIST SP 800-61.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q11",
+		"category": "Govern",
+		"item": "Does the organization have a documented or mandated timeframe for mitigating or remediating risks such as vulnerabilities?",
+		"explanation": "Ensures timely fixes to prevent exploitation of known flaws (e.g., Log4Shell), reduces mean time to mitigate (MTTM), and demonstrates accountability for risk management.",
+		"remediation": "Define SLAs for vulnerability remediation: e.g. Critical (72h), High (14d), Medium/Low (60d). Track via ticketing systems like Jira and report progress to leadership weekly.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q12",
+		"category": "Govern",
+		"item": "Is the organization required to comply with any specific regulatory compliance standards relating to the products/services delivered?",
+		"explanation": "Avoids legal, contractual, audit, or reputational consequences from missing applicable security and privacy obligations. Ensures alignment with customer and regulatory expectations.",
+		"remediation": "Formalize a Compliance Management Program mapping services to relevant regulations (e.g., GDPR, CCPA). Appoint a compliance officer, conduct gap analyses, and use automation tools for continuous monitoring.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q13",
+		"category": "Govern",
+		"item": "If processing financial consumer or customer information to service loans or insurance policies, does the organization implement controls that satisfy the Safeguards Rule under the Gramm-Leach-Bliley Act?",
+		"explanation": "Protects sensitive consumer financial information from theft/fraud. Non-compliance risks legal action by the FTC, loss of customer trust, and regulatory sanctions (e.g., fines up to $100K per violation).",
+		"remediation": "Develop GLBA-specific policies mandating encryption of financial data at rest/transfer, access controls, employee training, and annual third-party audits. Ensure breach notification procedures comply with the FTC's requirements.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q14",
+		"category": "Govern",
+		"item": "If processing, storing, or accessing personal health information (PHI), does the organization implement policies, procedures, and controls to ensure compliance with all relevant security and privacy laws (HIPAA and HITECH/Omnibus provisions)?",
+		"explanation": "Prevents breaches of PHI (e.g., ransomware attacks), which can lead to OCR fines ($100–50K+ per violation), class-action lawsuits, and loss of patient trust. Ensures legal defensibility in audits.",
+		"remediation": "If organization is a HIPAA-covered entity, create a HIPAA/HITECH-compliant program implementing Privacy Security Rule requirements with encryption, BAA agreements for vendors, regular risk assessments, and training. Use audit tools like ePHI monitoring platforms. Non-covered entities should use data governance and classification to monitor PHI data (e.g. worker's comp and healthcare benefits) to satisfy HIPAA notification rules for non-covered entities.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q15",
+		"category": "Govern",
+		"item": "If processing, storing, or accessing credit card holder data, does the organization implement policies, procedures, and controls to support PCI DSS compliance?",
+		"explanation": "Prevents data breaches leading to fraud or financial losses (e.g., Equifax-scale incidents). Non-compliance risks fines from PCI SSC ($5K–100K/month), loss of merchant accounts, and brand damage.",
+		"remediation": "Establish a dedicated PCI DSS program, including quarterly scans by an ASV, restricted CHD access, tokenization, and annual on-site QSA assessments. Segment payment networks into segregated zones.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q16",
+		"category": "Govern",
+		"item": "Does the organization maintain certifications or pass independent audits relevant to the products/services provided (e.g., SOC2, ISO27001, CMMC, etc.)?",
+		"explanation": "Builds customer/partner trust by demonstrating third-party validated security maturity. Often required in contracts (e.g., government bids, SaaS agreements) and reduces procurement friction.",
+		"remediation": "Select certifications aligned with industry needs (e.g., SOC 2 for cloud providers). Develop a roadmap to achieve and maintain them via formalized processes. Use frameworks like COBIT or NIST SP 800-53 as baselines.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q17",
+		"category": "Govern",
+		"item": "Does the organization implement a policy for breach notification to any state or federal authority?",
+		"explanation": "Ensures adherence to legal requirements (e.g., GDPR Article 33) and mitigates reputational harm from delayed disclosures. Avoids fines for non-compliance (e.g., GDPR's 4% global revenue penalty).",
+		"remediation": "Draft a Breach Notification Protocol specifying jurisdiction-specific reporting timelines, required content, and escalation paths. Maintain a list of authorities by geography.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q18",
+		"category": "Govern",
+		"item": "Have information security policies been published and communicated to all relevant parties?",
+		"explanation": "Ensures everyone understands their roles/responsibilities, reducing human errors that lead to breaches or compliance failures.",
+		"remediation": "Host policies on a secure intranet portal with mandatory acknowledgments (e-signatures). Send quarterly reminders via email/SMS and include updates in employee handbook revisions.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q19",
+		"category": "Govern",
+		"item": "Does the organization have a documented Disaster Recovery Plan (DRP) and a Business Continuity Plan (BCP) based on a Business Impact Analysis (BIA)?",
+		"explanation": "Links continuity and disaster recovery planning to business impact, so recovery priorities, recovery time objectives, and recovery ownership are defined before disruption occurs.",
+		"remediation": "Develop BIA-driven DR/BC plans with recovery time objectives (RTOs). Test annually via full-scale drills, document lessons learned, and update plans biannually.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q20",
+		"category": "Govern",
+		"item": "Does the organization have a Records Management or Data Governance policy that addresses the lifecycle of confidential data for both paper and electronic records?",
+		"explanation": "Facilitates records requests, deletion requests (right to be forgotten), limits surface area of disclosure risk in security incidents, avoids penalties from improper data retention, and reduces storage costs by eliminating obsolete records.",
+		"remediation": "Create a Retention Policy Schedule with disposal timelines for each record type. Use tools like Symantec Vontu to automate retention/destruction; shred physical documents via NAID-certified vendors.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q21",
+		"category": "Govern",
+		"item": "Does the organization have a CISO or equivalent?",
+		"explanation": "Ensures strategic leadership for cybersecurity programs, aligns security initiatives with business goals, and demonstrates accountability during audits/regulatory inquiries.",
+		"remediation": "Appoint a CISO reporting directly to the board with authority over budget/policy decisions. If outsourced, ensure vendor has direct executive access and regular governance meetings.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q22",
+		"category": "Govern",
+		"item": "Does the organization have a policy and procedure to remove employee or third party access immediately upon termination or end-of-contract which is audited or tested at least annually?",
+		"explanation": "Prevents ex-employees/vendors from retaining unauthorized access post-departure, reducing insider threat risks or accidental data leaks.",
+		"remediation": "Automate revocation via Identity Governance tools (e.g., SailPoint) linked to HR systems. Test termination processes quarterly using mock scenarios; audit logs for compliance with SLAs.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q23",
+		"category": "Govern",
+		"item": "Does the organization implement a Written Information Security Program (WISP)?",
+		"explanation": "Provides foundational documentation for governance and compliance audits. Establishes clear security expectations across the organization.",
+		"remediation": "Draft a WISP covering policies like AUP, incident response, and data classification. Approve it by executive leadership and update semi-annually with board reporting.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q24",
+		"category": "Govern",
+		"item": "Does the organization have an Information Security Policy (ISP) approved by leadership?",
+		"explanation": "Demonstrates commitment to security governance, sets expectations for compliance/operations, and provides accountability during audits/regulatory exams.",
+		"remediation": "Draft ISP outlining governance, roles, and risk appetite. Submit to board/C-suite annually; sign off by CEO/Chairman. Communicate via internal training and post on intranet.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q25",
+		"category": "Govern",
+		"item": "Does the organization have an Acceptable Use Policy (AUP)?",
+		"explanation": "Reduces risks from non-compliant behavior (e.g., pirated software introducing malware) while aligning user conduct with organizational security standards.",
+		"remediation": "Create an AUP prohibiting unauthorized software, personal use of devices, and social media access unless approved. Link violations to disciplinary actions; communicate annually during training.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q26",
+		"category": "Govern",
+		"item": "Is there a protocol that defines communication internally and externally in the event of an incident?",
+		"explanation": "Ensures timely, accurate, and consistent communication during security incidents, reducing confusion, regulatory risk, and reputational damage while supporting coordinated response efforts.",
+		"remediation": "Develop an Incident Communications Plan defining internal and external notification procedures, stakeholder responsibilities, escalation paths, approved spokespersons, legal review requirements, and regulatory reporting timelines. Test the communication process during annual tabletop exercises and update it following lessons learned.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q27",
+		"category": "Identify",
+		"item": "Does the organization maintain an asset inventory, which includes physical and data assets?",
+		"explanation": "Ensures visibility into all assets (e.g., devices, servers, data) to prioritize protection, reduce blind spots, and align security controls with risk posture. Without this, critical resources may be overlooked in incident response or compliance efforts.",
+		"remediation": "Implement a comprehensive Asset Inventory Management program using automated tools to catalog all physical, digital, and data assets. Assign ownership and classify sensitivity levels. Review quarterly and integrate with configuration management databases (CMDBs).",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q28",
+		"category": "Identify",
+		"item": "Does the organization conduct a penetration test using an independent third party, at least annually?",
+		"explanation": "Identifies vulnerabilities attackers might exploit (e.g., unpatched systems), validates control effectiveness, and provides actionable insights for prioritized remediation.",
+		"remediation": "Contract with a pentesting firm annually to simulate attacks across all systems. Remediate critical findings within 30 days; review moderate/high risks quarterly.",
+		"weight": 2,
+		"quick": true
+	},
+	{
+		"id": "q29",
+		"category": "Identify",
+		"item": "Does the organization have a vulnerability management process that documents corrective actions taken?",
+		"explanation": "Creates an audit trail to prove due diligence during investigations or compliance checks. Ensures repeat vulnerabilities are addressed systematically rather than reactively.",
+		"remediation": "Implement a cyclical VM program with scanning tools (e.g., Nessus, Qualys), automated reporting, and documented fixes in CMDBs. Retain records for 7+ years for audits.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q30",
+		"category": "Identify",
+		"item": "Does the organization use facilities to store or process information outside of the United States?",
+		"explanation": "Avoids legal violations under GDPR/CCPA for improper data transfers, which could result in fines or bans on data exports to certain regions.",
+		"remediation": "If yes, assess cross-border data transfer risks (e.g., GDPR Schrems II requirements). Implement contractual safeguards like EU Standard Contractual Clauses (SCCs) and encrypt all international transmissions.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q31",
+		"category": "Identify",
+		"item": "Has the organization documented the flow of data between internal and 3rd party systems?",
+		"explanation": "Provides visibility into how sensitive information is collected, processed, stored, and shared, enabling effective risk assessments, compliance with privacy regulations, and faster incident investigations.",
+		"remediation": "Create and maintain data flow diagrams identifying systems, third-party integrations, data types, trust boundaries, and transmission methods. Review and update documentation whenever significant architectural or vendor changes occur and at least annually.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q32",
+		"category": "Protect",
+		"item": "Is remote access permitted? How is remote access managed?",
+		"explanation": "Reduces the risk of unauthorized access by ensuring remote connections are authenticated, encrypted, monitored, and limited to authorized users and devices.",
+		"remediation": "Require remote access through secure VPN or Zero Trust Network Access (ZTNA) solutions protected by MFA. Restrict access based on user roles, device compliance, and network policies. Log and monitor remote sessions, disable inactive accounts, and periodically review remote access permissions.",
+		"weight": 3,
+		"quick": false
+	},
+	{
+		"id": "q33",
+		"category": "Protect",
+		"item": "Does the organization require regular security awareness training for all personnel?",
+		"explanation": "Reduces human-error risk by teaching staff how to recognize phishing, report suspicious activity, protect credentials, and follow incident procedures.",
+		"remediation": "Mandate annual mandatory training covering phishing, MFA, password hygiene, and incident reporting via platforms like KnowBe4 or SANS Securing the Human. Test knowledge post-training with simulations.",
+		"weight": 2,
+		"quick": true
+	},
+	{
+		"id": "q34",
+		"category": "Protect",
+		"item": "Are development and test environments separated from the production environment?",
+		"explanation": "Prevents accidental exposure or misconfiguration of live systems by isolating sensitive data in non-production environments. Reduces risks from insider errors or compromised test accounts.",
+		"remediation": "Implement segmented networks for dev/test. Use VLANs/subnets with no production data allowed unless masked/anonymized (e.g., GDPR Article 35).",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q35",
+		"category": "Protect",
+		"item": "Does the organization perform configuration backups of vendor systems (i.e., switches, routers, storage systems)?",
+		"explanation": "Enables rapid recovery from hardware failures/configuration errors and ensures compliance during vendor audits.",
+		"remediation": "Automate backups using tools like Ansible or Cisco DNA Center. Store in version-controlled repositories (e.g., Git) with checksums to detect tampering. Test restores quarterly.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q36",
+		"category": "Protect",
+		"item": "Does the organization implement a firewall that prevents all access from the Internet to internal networks?",
+		"explanation": "Reduces attack surfaces by limiting direct exposure of internal systems to external threats like malware or DDoS attacks.",
+		"remediation": "Deploy stateful firewalls blocking inbound traffic except for approved services (e.g., HTTPS/RDP). Use next-gen firewalls (NGFWs) for advanced threat detection and DNS filtering.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q37",
+		"category": "Protect",
+		"item": "Are intrusion detection systems maintained and monitored at all Internet connections and at the boundaries between internal networks?",
+		"explanation": "Detects malicious traffic patterns (e.g., DDoS attacks, port scans), providing early warnings before breaches escalate.",
+		"remediation": "Deploy IDS/IPS appliances (e.g., Snort, Palo Alto Networks) with updated signatures/signals. Monitor alerts via SIEM and investigate false positives/negatives monthly.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q38",
+		"category": "Protect",
+		"item": "Does the organization implement a method to test the business continuity plan or functions at least annually?",
+		"explanation": "Ensures rapid resumption of critical operations after incidents like ransomware or natural disasters, minimizing financial losses and reputational damage.",
+		"remediation": "Conduct annual tabletop exercises simulating major disruptions (e.g., ransomware, natural disasters). Use tools like BCP software (e.g., PlanSight) to track readiness metrics.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q39",
+		"category": "Protect",
+		"item": "Are backup systems isolated from production networks and/or identity infrastructure?",
+		"explanation": "Ensures backups are intact and restorable, avoiding reliance on corrupted or incomplete copies during recovery efforts.",
+		"remediation": "Segregate backup servers into DMZs with no inbound connections except from authorized sources. Use dedicated VLANs and restrict administrative access via MFA.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q40",
+		"category": "Protect",
+		"item": "Does the organization use a third-party service to transport or retain media which contain organizational information?",
+		"explanation": "Mitigates risks of data breaches due to vendor negligence, improper handling, or unauthorized access. Ensures compliance with regulations like GDPR's cross-border data transfer requirements.",
+		"remediation": "Vet providers via SOC 2 reports, SLAs for encryption, and physical/logical security controls. Encrypt all data prior to transmission/retention using client-managed keys (e.g., FIPS 140-2 for orgs with Federal compliance expectations).",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q41",
+		"category": "Protect",
+		"item": "Are all services exposed to the internet (email, FTP, web server, remote access) secured in a DMZ?",
+		"explanation": "Protects internal systems from attacks targeting exposed services while maintaining functionality (e.g., customer portals).",
+		"remediation": "Place public-facing servers in DMZ segments with strict egress rules to production networks. Apply WAF protection for web apps and enforce rate limiting on RDP/SFTP ports.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q42",
+		"category": "Protect",
+		"item": "Does the organization have a process to prevent or detect data leakage including the use of a Data Loss Prevention (DLP) tool to detect or prevent the unintended disclosure of sensitive or confidential data?",
+		"explanation": "Prevents accidental/unauthorized leaks (e.g., via email) that could lead to compliance violations (GDPR fines), legal action, or reputational harm.",
+		"remediation": "Deploy DLP solutions monitoring endpoints, emails, and network traffic for regulated data (e.g., PII/PCI). Establish policies blocking unapproved transfers and alerting security teams.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q43",
+		"category": "Protect",
+		"item": "Does the organization have a method to ensure the organization's data will be encrypted at rest?",
+		"explanation": "Prevents unauthorized access to stored data if devices/media are lost/stolen or compromised during breaches (e.g., ransomware attacks targeting unencrypted files).",
+		"remediation": "Use full-disk encryption (BitLocker/FileVault) on endpoints, database field-level encryption, and file-level AES-256 for documents. Centralize key management and escrow.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q44",
+		"category": "Protect",
+		"item": "Does the organization utilize email filtering and phishing prevention tools?",
+		"explanation": "Blocks malicious emails (e.g., BEC scams), reducing risks of credential theft or ransomware infections from phishing attacks.",
+		"remediation": "Deploy enterprise-grade solutions like Proofpoint or Mimecast with sandboxing, URL rewriting, and DMARC alignment. Conduct monthly simulated phishing campaigns to measure susceptibility.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q45",
+		"category": "Protect",
+		"item": "Does the organization deploy an Endpoint Detection and Response (EDR), or Managed Detection and Response (MDR) platform on all systems?",
+		"explanation": "Detects advanced threats (e.g., APTs) that evade traditional AV tools by monitoring endpoint behavior in real time. Accelerates incident response through automation and expert support.",
+		"remediation": "Install EDR agents (e.g., CrowdStrike Falcon, Microsoft Defender ATP) with behavioral analysis and automated containment. Consider MDR for 24/7 threat hunting if internal resources are limited.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q46",
+		"category": "Protect",
+		"item": "Does the organization implement a process for background screening personnel who will be given access to organizational data?",
+		"explanation": "Reduces insider threats (e.g., fraud, espionage) by verifying trustworthiness and legal eligibility before granting access to confidential information.",
+		"remediation": "Define risk-appropriate background screening for employees and vendors who handle sensitive data. Re-screen where legally appropriate after role changes or access expansion.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q47",
+		"category": "Protect",
+		"item": "Do users have local administrator rights to their workstations?",
+		"explanation": "Limits attack surfaces by preventing malware from escalating privileges. Reduces risks of ransomware infections that exploit elevated user permissions.",
+		"remediation": "Restrict admin privileges except where justified (e.g., IT staff). Use least privilege principles and Just-In-Time access via Microsoft LAPS or BeyondTrust Privilege Manager.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q48",
+		"category": "Protect",
+		"item": "Is Multifactor Authentication (MFA) used for authentication?",
+		"explanation": "Protects against credential stuffing/phishing attacks by adding an additional verification layer, reducing breaches caused by stolen passwords.",
+		"remediation": "Enforce MFA across all cloud/on-prem systems using FIDO2-certified hardware tokens (e.g., YubiKey) or app-based OTPs. Audit exceptions quarterly and phase out legacy single-factor accounts.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q49",
+		"category": "Protect",
+		"item": "Does the organization require the use of unique user IDs and enforce strong passwords?",
+		"explanation": "Ensures accountability by tracing actions to individual users. Prevents credential reuse attacks and reduces risks of compromised accounts due to weak passwords.",
+		"remediation": "Ban shared credentials; mandate complex passwords (14+ chars, no dictionary words). Use PAM solutions like CyberArk for privileged passwords and enforce 90-day expirations with history checks.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q50",
+		"category": "Protect",
+		"item": "Does the organization have security cameras and electronic door lock (key card) access systems?",
+		"explanation": "Deters physical breaches, detects unauthorized facility access, and provides forensic evidence during investigations of insider threats or equipment theft.",
+		"remediation": "Deploy CCTV with motion detection in server rooms/data centers. Use keycard systems integrated with HR databases to revoke access post-termination. Audit logs monthly for unauthorized entry attempts.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q51",
+		"category": "Protect",
+		"item": "Does the organization implement network segmentation?",
+		"explanation": "Limits lateral movement by attackers post-compromise. Protects critical systems from less-secure segments (e.g., guest Wi-Fi or IoT devices).",
+		"remediation": "Segment networks into zones (public, DMZ, internal) with firewalls enforcing deny-by-default rules. Use VLANs/MPLS for remote offices and micro-segmentation in cloud environments.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q52",
+		"category": "Protect",
+		"item": "Are any and all wireless networks configured with encryption of at least WPA2 or higher?",
+		"explanation": "Prevents unauthorized access to sensitive data transmitted over Wi-Fi, which is a common attack vector in office environments.",
+		"remediation": "Migrate all wireless deployments to WPA3. Disable legacy protocols (WEP/WPA) and use 802.1X authentication with certificates for enterprise networks.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q53",
+		"category": "Protect",
+		"item": "Are backups encrypted?",
+		"explanation": "Protects backup data from unauthorized access or disclosure if backup media or storage locations are compromised, helping preserve confidentiality during recovery operations.",
+		"remediation": "Encrypt backups using industry-standard encryption (e.g., AES-256) for both data at rest and in transit. Protect encryption keys through centralized key management with restricted access, periodically verify encryption settings, and include encrypted backup restoration in regular recovery testing.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q54",
+		"category": "Recover",
+		"item": "Does the organization implement regular backup of systems, applications, and related data?",
+		"explanation": "Ensures critical systems and data can be restored after ransomware, hardware failure, accidental deletion, or disaster-related disruption.",
+		"remediation": "Maintain encrypted backups with retention aligned to business and regulatory needs. Use a 3-2-1-style backup strategy and test restore procedures on a defined schedule.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q55",
+		"category": "Recover",
+		"item": "Are periodic tests conducted to restore and validate backup data?",
+		"explanation": "Verifies that backups are usable, complete, and timely enough to support recovery objectives during a real incident.",
+		"remediation": "Schedule automated backups daily/weekly/monthly by criticality. Test restores quarterly for all environments; document results in a backup verification log.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q56",
+		"category": "Recover",
+		"item": "Are data backups stored in a secondary (offsite) location?",
+		"explanation": "Protects recovery options if primary facilities or local infrastructure are unavailable, damaged, or compromised.",
+		"remediation": "Maintain geographically distant offsite storage with redundancy (e.g., AWS Glacier Deep Archive). Ensure physical access controls align with on-premises security standards.",
+		"weight": 2,
+		"quick": false
+	},
+	{
+		"id": "q57",
+		"category": "Recover",
+		"item": "Does the organization have Cyber Liability Insurance or equivalent coverage through another policy?",
+		"explanation": "Mitigates financial risks from breaches (e.g., legal fees, downtime), enabling recovery without bankruptcy-level impacts.",
+		"remediation": "Purchase cyber insurance covering breach response, ransom payments, and business interruption costs. Ensure coverage aligns with revenue size (e.g., $10M+ limits for enterprises). Renew annually after risk assessments.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q58",
+		"category": "Recover",
+		"item": "Does the organization have access to General Counsel familiar with data privacy laws?",
+		"explanation": "Ensures legally defensible actions during incidents (e.g., accurate breach notifications) and avoids penalties from misinterpretation of regulations like GDPR or CCPA.",
+		"remediation": "Engage a GC specializing in cybersecurity/privacy or retain legal counsel via retainer agreements. Include them in breach response teams and compliance program reviews.",
+		"weight": 1,
+		"quick": false
+	},
+	{
+		"id": "q59",
+		"category": "Respond",
+		"item": "Does the organization implement annual Incident Response tabletop training where all individuals are assigned roles and responsibilities?",
+		"explanation": "Prepares teams to act decisively during real incidents by identifying gaps and improving coordination under pressure.",
+		"remediation": "Conduct IR tabletops annually with scenarios like ransomware or data breaches. Assign roles (Incident Commander, Legal Advisor) and document responses in a playbook for improvement.",
+		"weight": 3,
+		"quick": true
+	},
+	{
+		"id": "q60",
+		"category": "Respond",
+		"item": "Does the organization update the IRP based on Incident Response Tabletop exercises?",
+		"explanation": "Ensures continuous improvement of incident response capabilities and ensures plans remain actionable during evolving threat landscapes.",
+		"remediation": "Document tabletop outcomes via lessons learned reports; revise IRP sections where gaps were identified (e.g., communication delays). Train staff post-exercise using recorded sessions.",
+		"weight": 2,
+		"quick": false
+	}
+]

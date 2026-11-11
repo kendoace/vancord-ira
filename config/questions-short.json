@@ -1,0 +1,110 @@
+[
+  {
+    "id": "q10",
+    "category": "Govern",
+    "item": "Does the organization implement a formal Security Incident Response Plan (IRP) that is updated and tested regularly?",
+    "explanation": "Ensures organized response to breaches, minimizing downtime/data loss while complying with regulatory notification requirements.",
+    "remediation": "Develop an IRP with defined roles (e.g., CSIRT, PR), communication protocols, and containment steps. Update it semi-annually post-exercise and ensure alignment with NIST SP 800-61.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q19",
+    "category": "Govern",
+    "item": "Does the organization have a documented Disaster Recovery Plan (DRP) and a Business Continuity Plan (BCP) based on a Business Impact Analysis (BIA)?",
+    "explanation": "Links continuity and disaster recovery planning to business impact, so recovery priorities, recovery time objectives, and recovery ownership are defined before disruption occurs.",
+    "remediation": "Develop BIA-driven DR/BC plans with recovery time objectives (RTOs). Test annually via full-scale drills, document lessons learned, and update plans biannually.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q26",
+    "category": "Identify",
+    "item": "Does the organization maintain an asset inventory, which includes physical and data assets?",
+    "explanation": "Ensures visibility into all assets (e.g., devices, servers, data) to prioritize protection, reduce blind spots, and align security controls with risk posture. Without this, critical resources may be overlooked in incident response or compliance efforts.",
+    "remediation": "Implement a comprehensive Asset Inventory Management program using automated tools to catalog all physical, digital, and data assets. Assign ownership and classify sensitivity levels. Review quarterly and integrate with configuration management databases (CMDBs).",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q27",
+    "category": "Identify",
+    "item": "Does the organization conduct a penetration test using an independent third party, at least annually?",
+    "explanation": "Identifies vulnerabilities attackers might exploit (e.g., unpatched systems), validates control effectiveness, and provides actionable insights for prioritized remediation.",
+    "remediation": "Contract with a pentesting firm annually to simulate attacks across all systems. Remediate critical findings within 30 days; review moderate/high risks quarterly.",
+    "weight": 2,
+    "quick": true
+  },
+  {
+    "id": "q30",
+    "category": "Protect",
+    "item": "Does the organization require regular security awareness training for all personnel?",
+    "explanation": "Reduces human-error risk by teaching staff how to recognize phishing, report suspicious activity, protect credentials, and follow incident procedures.",
+    "remediation": "Mandate annual mandatory training covering phishing, MFA, password hygiene, and incident reporting via platforms like KnowBe4 or SANS Securing the Human. Test knowledge post-training with simulations.",
+    "weight": 2,
+    "quick": true
+  },
+  {
+    "id": "q42",
+    "category": "Protect",
+    "item": "Does the organization deploy an Endpoint Detection and Response (EDR), or Managed Detection and Response (MDR) platform on all systems?",
+    "explanation": "Detects advanced threats (e.g., APTs) that evade traditional AV tools by monitoring endpoint behavior in real time. Accelerates incident response through automation and expert support.",
+    "remediation": "Install EDR agents (e.g., CrowdStrike Falcon, Microsoft Defender ATP) with behavioral analysis and automated containment. Consider MDR for 24/7 threat hunting if internal resources are limited.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q45",
+    "category": "Protect",
+    "item": "Is Multifactor Authentication (MFA) used for authentication?",
+    "explanation": "Protects against credential stuffing/phishing attacks by adding an additional verification layer, reducing breaches caused by stolen passwords.",
+    "remediation": "Enforce MFA across all cloud/on-prem systems using FIDO2-certified hardware tokens (e.g., YubiKey) or app-based OTPs. Audit exceptions quarterly and phase out legacy single-factor accounts.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q3",
+    "category": "Detect",
+    "item": "Are vulnerability scans performed? By whom and how frequently?",
+    "explanation": "Identifies exploitable weaknesses (e.g., unpatched servers) before attackers can exploit them, reducing risks of breaches or ransomware infections.",
+    "remediation": "Schedule quarterly external/internal scans via Nessus/OpenVAS and monthly credentialed scans on critical systems. Prioritize findings based on CVE scores and asset criticality.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q4",
+    "category": "Detect",
+    "item": "Are IT and security system logs collected and stored centrally on a Security Information and Event Management (SIEM) system?",
+    "explanation": "Provides comprehensive visibility into threats across the environment, enabling faster incident detection and response.",
+    "remediation": "Centralize logging with SIEM solutions; ensure 90+ days of retention. Create correlation rules for attack patterns (e.g., brute force, SQLi). Enable real-time dashboards for SOC teams.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q55",
+    "category": "Respond",
+    "item": "Does the organization implement annual Incident Response tabletop training where all individuals are assigned roles and responsibilities?",
+    "explanation": "Prepares teams to act decisively during real incidents by identifying gaps and improving coordination under pressure.",
+    "remediation": "Conduct IR tabletops annually with scenarios like ransomware or data breaches. Assign roles (Incident Commander, Legal Advisor) and document responses in a playbook for improvement.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q50",
+    "category": "Recover",
+    "item": "Does the organization implement regular backup of systems, applications, and related data?",
+    "explanation": "Ensures critical systems and data can be restored after ransomware, hardware failure, accidental deletion, or disaster-related disruption.",
+    "remediation": "Maintain encrypted backups with retention aligned to business and regulatory needs. Use a 3-2-1-style backup strategy and test restore procedures on a defined schedule.",
+    "weight": 3,
+    "quick": true
+  },
+  {
+    "id": "q51",
+    "category": "Recover",
+    "item": "Are periodic tests conducted to restore and validate backup data?",
+    "explanation": "Verifies that backups are usable, complete, and timely enough to support recovery objectives during a real incident.",
+    "remediation": "Schedule automated backups daily/weekly/monthly by criticality. Test restores quarterly for all environments; document results in a backup verification log.",
+    "weight": 3,
+    "quick": true
+  }
+]
