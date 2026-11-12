@@ -77,7 +77,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .mode-tab:hover { color:var(--vc-navy); }
 .mode-tab.active { background:var(--vc-navy); color:white; }
 .mode-tab.active .mt-count { background:rgba(255,255,255,.16); color:rgba(255,255,255,.9); }
-.assess-block { background:white; border:1px solid var(--gray-200); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); }
+.assess-block { background:#fff; border:1px solid var(--gray-200); border-top-left-radius:14px; border-top-right-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); }
 .assess-toolbar { padding:16px 24px; background:var(--gray-50); border-bottom:1px solid var(--gray-200); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 .toolbar-progress { display:flex; align-items:center; gap:12px; font-size:13px; color:var(--gray-600); flex:1; min-width:260px; }
 .progbar { flex:1; height:5px; background:var(--gray-200); border-radius:3px; overflow:hidden; max-width:260px; }
